@@ -1,5 +1,5 @@
 function loadJS(file){
-
+    
     var main = document.getElementsByClassName('main')[0]
     var canvas = document.getElementById('myCanvas')
     var scriptElement = document.getElementById('loadedScript')
