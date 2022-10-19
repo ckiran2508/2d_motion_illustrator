@@ -1,116 +1,12 @@
 <html><head>
         <title></title>
-    <style>
-*{
-    margin:0;
-    padding:0;
-     box-sizing: border-box;
-     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
 
-header{
-width:100%;
-height:10%;
-box-shadow: 0px 2px 8px 2px lightgray;
-background: rgb(41, 48, 67);
-}
-
-header .nav-container{
-    display:flex;
-    justify-content: flex-end;
-    margin:auto;
-    width:60%;
-}
-
-header .nav-container .github-about{
-    display: flex;
-    justify-content: flex-end;
-    margin-top:15px;
-    width:50%;
-}
-
-header .nav-container .github-about a{
-margin:7px;
-color: white;
-cursor: pointer;
-font-weight: 200;
-}
-
-
-header .nav-container .logo-container {
-    padding:10px;
-    font-family:'Comic Sans MS';
-    color:white;
-    width:50%;
-    font-size: 32px;
-    font-weight:400;
-}
-
-.container{
-    display:flex;
-    width:100%;
-    height:85%;
-}
-
-.left{
-    width:17%;
-    height:100%;
-    border-right: 1px solid#e6e6e6;
-}
-
-
-.left ul{
-    padding:30px;  
-    padding-bottom:0px;
-   
-}
-.left ul p{
-    margin-bottom:7px;
-    font-style: bold;
-    font-size: 18px;
-}
-
-.left ul li{
-    padding:5px;
-   list-style: none;
-}
-
-.left ul li a{
-    text-decoration:none;
-    color:#404040;
-    font-size: 14px;
-    cursor: pointer;
-}
-.left ul li a:hover{
-    color:#808080;
-} 
-
-.main{
-    width:66%;
-    height:100%;
-    padding:12px;
-}
-
-.main #subject{
-
-}
-
-.right{
-    width:17%;
-    height:100%;
-}
-
-
-
-footer{
-    width:100%;
-    height:5%;
-    background:#f2f2f2;
-    border-top: 1px solid#e6e6e6;
-}
-
-
-/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9zcmMvYXNzZXRzL3N0eWxlcy9pbmRleC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQUNBO0lBQ0ksUUFBUTtJQUNSLFNBQVM7S0FDUixzQkFBc0I7S0FDdEIsd0lBQXdJO0FBQzdJOztBQUVBO0FBQ0EsVUFBVTtBQUNWLFVBQVU7QUFDVixxQ0FBcUM7QUFDckMsMkJBQTJCO0FBQzNCOztBQUVBO0lBQ0ksWUFBWTtJQUNaLHlCQUF5QjtJQUN6QixXQUFXO0lBQ1gsU0FBUztBQUNiOztBQUVBO0lBQ0ksYUFBYTtJQUNiLHlCQUF5QjtJQUN6QixlQUFlO0lBQ2YsU0FBUztBQUNiOztBQUVBO0FBQ0EsVUFBVTtBQUNWLFlBQVk7QUFDWixlQUFlO0FBQ2YsZ0JBQWdCO0FBQ2hCOzs7QUFHQTtJQUNJLFlBQVk7SUFDWiwyQkFBMkI7SUFDM0IsV0FBVztJQUNYLFNBQVM7SUFDVCxlQUFlO0lBQ2YsZUFBZTtBQUNuQjs7QUFFQTtJQUNJLFlBQVk7SUFDWixVQUFVO0lBQ1YsVUFBVTtBQUNkOztBQUVBO0lBQ0ksU0FBUztJQUNULFdBQVc7SUFDWCw4QkFBOEI7QUFDbEM7OztBQUdBO0lBQ0ksWUFBWTtJQUNaLGtCQUFrQjs7QUFFdEI7QUFDQTtJQUNJLGlCQUFpQjtJQUNqQixnQkFBZ0I7SUFDaEIsZUFBZTtBQUNuQjs7QUFFQTtJQUNJLFdBQVc7R0FDWixnQkFBZ0I7QUFDbkI7O0FBRUE7SUFDSSxvQkFBb0I7SUFDcEIsYUFBYTtJQUNiLGVBQWU7SUFDZixlQUFlO0FBQ25CO0FBQ0E7SUFDSSxhQUFhO0FBQ2pCOztBQUVBO0lBQ0ksU0FBUztJQUNULFdBQVc7SUFDWCxZQUFZO0FBQ2hCOztBQUVBOztBQUVBOztBQUVBO0lBQ0ksU0FBUztJQUNULFdBQVc7QUFDZjs7OztBQUlBO0lBQ0ksVUFBVTtJQUNWLFNBQVM7SUFDVCxrQkFBa0I7SUFDbEIsNEJBQTRCO0FBQ2hDIiwic291cmNlc0NvbnRlbnQiOlsiXHJcbip7XHJcbiAgICBtYXJnaW46MDtcclxuICAgIHBhZGRpbmc6MDtcclxuICAgICBib3gtc2l6aW5nOiBib3JkZXItYm94O1xyXG4gICAgIGZvbnQtZmFtaWx5OiAtYXBwbGUtc3lzdGVtLCBCbGlua01hY1N5c3RlbUZvbnQsICdTZWdvZSBVSScsIFJvYm90bywgT3h5Z2VuLCBVYnVudHUsIENhbnRhcmVsbCwgJ09wZW4gU2FucycsICdIZWx2ZXRpY2EgTmV1ZScsIHNhbnMtc2VyaWY7XHJcbn1cclxuXHJcbmhlYWRlcntcclxud2lkdGg6MTAwJTtcclxuaGVpZ2h0OjEwJTtcclxuYm94LXNoYWRvdzogMHB4IDJweCA4cHggMnB4IGxpZ2h0Z3JheTtcclxuYmFja2dyb3VuZDogcmdiKDQxLCA0OCwgNjcpO1xyXG59XHJcblxyXG5oZWFkZXIgLm5hdi1jb250YWluZXJ7XHJcbiAgICBkaXNwbGF5OmZsZXg7XHJcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGZsZXgtZW5kO1xyXG4gICAgbWFyZ2luOmF1dG87XHJcbiAgICB3aWR0aDo2MCU7XHJcbn1cclxuXHJcbmhlYWRlciAubmF2LWNvbnRhaW5lciAuZ2l0aHViLWFib3V0e1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGp1c3RpZnktY29udGVudDogZmxleC1lbmQ7XHJcbiAgICBtYXJnaW4tdG9wOjE1cHg7XHJcbiAgICB3aWR0aDo1MCU7XHJcbn1cclxuXHJcbmhlYWRlciAubmF2LWNvbnRhaW5lciAuZ2l0aHViLWFib3V0IGF7XHJcbm1hcmdpbjo3cHg7XHJcbmNvbG9yOiB3aGl0ZTtcclxuY3Vyc29yOiBwb2ludGVyO1xyXG5mb250LXdlaWdodDogMjAwO1xyXG59XHJcblxyXG5cclxuaGVhZGVyIC5uYXYtY29udGFpbmVyIC5sb2dvLWNvbnRhaW5lciB7XHJcbiAgICBwYWRkaW5nOjEwcHg7XHJcbiAgICBmb250LWZhbWlseTonQ29taWMgU2FucyBNUyc7XHJcbiAgICBjb2xvcjp3aGl0ZTtcclxuICAgIHdpZHRoOjUwJTtcclxuICAgIGZvbnQtc2l6ZTogMzJweDtcclxuICAgIGZvbnQtd2VpZ2h0OjQwMDtcclxufVxyXG5cclxuLmNvbnRhaW5lcntcclxuICAgIGRpc3BsYXk6ZmxleDtcclxuICAgIHdpZHRoOjEwMCU7XHJcbiAgICBoZWlnaHQ6ODUlO1xyXG59XHJcblxyXG4ubGVmdHtcclxuICAgIHdpZHRoOjE3JTtcclxuICAgIGhlaWdodDoxMDAlO1xyXG4gICAgYm9yZGVyLXJpZ2h0OiAxcHggc29saWQjZTZlNmU2O1xyXG59XHJcblxyXG5cclxuLmxlZnQgdWx7XHJcbiAgICBwYWRkaW5nOjMwcHg7ICBcclxuICAgIHBhZGRpbmctYm90dG9tOjBweDtcclxuICAgXHJcbn1cclxuLmxlZnQgdWwgcHtcclxuICAgIG1hcmdpbi1ib3R0b206N3B4O1xyXG4gICAgZm9udC1zdHlsZTogYm9sZDtcclxuICAgIGZvbnQtc2l6ZTogMThweDtcclxufVxyXG5cclxuLmxlZnQgdWwgbGl7XHJcbiAgICBwYWRkaW5nOjVweDtcclxuICAgbGlzdC1zdHlsZTogbm9uZTtcclxufVxyXG5cclxuLmxlZnQgdWwgbGkgYXtcclxuICAgIHRleHQtZGVjb3JhdGlvbjpub25lO1xyXG4gICAgY29sb3I6IzQwNDA0MDtcclxuICAgIGZvbnQtc2l6ZTogMTRweDtcclxuICAgIGN1cnNvcjogcG9pbnRlcjtcclxufVxyXG4ubGVmdCB1bCBsaSBhOmhvdmVye1xyXG4gICAgY29sb3I6IzgwODA4MDtcclxufSBcclxuXHJcbi5tYWlue1xyXG4gICAgd2lkdGg6NjYlO1xyXG4gICAgaGVpZ2h0OjEwMCU7XHJcbiAgICBwYWRkaW5nOjEycHg7XHJcbn1cclxuXHJcbi5tYWluICNzdWJqZWN0e1xyXG5cclxufVxyXG5cclxuLnJpZ2h0e1xyXG4gICAgd2lkdGg6MTclO1xyXG4gICAgaGVpZ2h0OjEwMCU7XHJcbn1cclxuXHJcblxyXG5cclxuZm9vdGVye1xyXG4gICAgd2lkdGg6MTAwJTtcclxuICAgIGhlaWdodDo1JTtcclxuICAgIGJhY2tncm91bmQ6I2YyZjJmMjtcclxuICAgIGJvcmRlci10b3A6IDFweCBzb2xpZCNlNmU2ZTY7XHJcbn1cclxuXHJcbiJdLCJzb3VyY2VSb290IjoiIn0= */</style></head>
+<link rel="stylesheet" href="style.css"/>
+<script type="text/javascript" src="vector.js"></script>
+<script type="text/javascript" src="particle.js"></script>
+<script type="text/javascript" src="utils.js"></script>
+<script type="text/javascript" src="loader.js" ></script>
+</head>
     <body>
        <div id="root"><header>
   <div class="nav-container">
@@ -119,7 +15,6 @@ footer{
 </div>
 <div class="github-about">
   <a>Github</a>
-  <a>About</a>
 </div>
 </div>
 </header>
@@ -128,16 +23,19 @@ footer{
 <div class="left">
   <ul id="all-topics">
     <p>Topics</p>
-    <li><a id="point-gravity">Point Gravity</a></li>
-    <li><a id="line-gravity">Line Gravity</a></li>
-	<li><a id="coulomb-attraction">Coulomb Attraction</a></li>
-    <li><a id="elastic-collision">Elastic Collision</a></li>
-    <li><a id="pendulum">Pendulum</a></li>
+    <li><a onClick="loadJS('point_gravity.js');">Point Gravity</a></li>
+    <li><a onClick="loadJS('surface_gravity.js');">Surface Gravity</a></li>
+	  <li><a onClick="loadJS('newtons_cradle.js');">Newton's Cradle</a></li>
+    <li><a onClick="loadJS('elastic_collision.js');">Elastic Collision</a></li>
+    <li><a onClick="loadJS('electron_motion.js');">Electron Motion in a Magnetic field</a></li>
+   
    </ul>
 </div>
 
 <div class="main">
 
+    <canvas id="myCanvas" width="900" height = "570">
+    </canvas>
 </div>
 
 <div class="right">
@@ -147,9 +45,15 @@ footer{
 </div>
 
 <footer>
-
+ <div class="center">
+  <b>Author</b>: Kiran Channayanamath
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <b>Email</b>: <u>ckiran2508@gmail.com</u>
+ </div>
 </footer>
 </div>
-        <script type="text/javascript" src="bundle.js"></script>
     
 </body></html>
