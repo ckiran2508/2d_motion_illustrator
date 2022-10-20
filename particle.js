@@ -6,6 +6,10 @@ const Particle ={
     radius : 0,
     colour : null,
     mass : 0,
+    charge:0,
+    theta:0,
+    omega:0,
+    alpha:0,
 
     create: function(x,y,radius,colour,mass){
         var obj = Object.create(this)
@@ -75,6 +79,18 @@ const Particle ={
        // var prevPosition = this.position
         this.position= Vector.VectorDiff(tempPosition,hinge.position)
       //  this.velocity = Vector.VectorDiff(prevPosition,this.position)
+      },
+
+      motionInAMagneticField: function(magneticField){
+        if(this.position.getX() >  magneticField.x1  && this.position.getY() > magneticField.y1 
+        && this.position.getX() <  magneticField.x2  && this.position.getY() < magneticField.y2){
+        var forceDueToMagneticField = magneticField.strength * this.charge * this.velocity.getMag()
+        var radialVector = Vector.create(0,0)
+        radialVector.setMag(1)
+        radialVector.setDir(this.velocity.getDir() + Math.PI/2)
+        var centripetalAccelerationVector = radialVector.multiply(forceDueToMagneticField)
+        this.velocity.addTo(centripetalAccelerationVector)
+        }
       },
 
 
