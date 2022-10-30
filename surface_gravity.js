@@ -3,22 +3,55 @@ var c = canvas.getContext('2d')
 
 function run(){
 
-var objectArray =[]
-var acceleration_due_to_gravity = Vector.create(0,0.2);
+var entities =[]
+var acceleration_due_to_gravity = Vector.create(0,0.2)
+var isMouseDown 
+var newParticle=null
+var floatingVector = Vector.create(0,0)
+
+canvas.addEventListener('mousedown',function(event){
+
+    isMouseDown=true
+    const rect = canvas.getBoundingClientRect()
+    var position =  Vector.create(event.clientX - rect.left.toFixed(0),event.clientY - rect.top.toFixed(0))
+    newParticle  = Particle.create(position.getX(),position.getY(),30,'lightgray',100)
+  })
+
+
+  canvas.addEventListener('mousemove',function(event){
+
+   if(isMouseDown){
+    const rect = canvas.getBoundingClientRect()
+    floatingVector = Vector.create(event.clientX - rect.left.toFixed(0),event.clientY - rect.top.toFixed(0))
+   }
+  })
+
+  canvas.addEventListener('mouseup',function(event){
+
+     isMouseDown = false
+     const rect = canvas.getBoundingClientRect()
+     var v = Vector.create(event.clientX - rect.left.toFixed(0),event.clientY - rect.top.toFixed(0))
+     newParticle.velocity = Vector.VectorDiff(v,newParticle.position)
+     newParticle.velocity.setMag(newParticle.velocity.getMag() / 10)
+     entities.push(newParticle)
+     newParticle = null
+     floatingVector = null
+   })
+
 
 function init(){
 
     for(let i = 0; i < 1 ; i++){
       var object = Particle.create(canvas.width/2,100,30,'lightgray',100)
       object.velocity = Vector.create(0, Math.random() *2)
-      objectArray.push(object)
+      entities.push(object)
     }
     
 }
 
 function updateObjects(){
-    for(let i = 0 ; i < objectArray.length ; i++){
-        var object = objectArray[i]
+    for(let i = 0 ; i < entities.length ; i++){
+        var object = entities[i]
     if(checkSurface(object)) {
         object.velocity.setDir(-object.velocity.getDir())
         object.velocity.setY(object.velocity.getY() * 0.9)
@@ -26,7 +59,7 @@ function updateObjects(){
        object.velocity.addTo(acceleration_due_to_gravity)
     }
     if(checkLaterals(object)) object.velocity.setX(-object.velocity.getX() * 0.9)
-    object.position.addTo(objectArray[i].velocity)
+    object.position.addTo(entities[i].velocity)
  }
 }
 
@@ -42,13 +75,20 @@ function checkLaterals(object){
 }
 
 function drawObjects(){
-    for(let i = 0 ; i < objectArray.length ; i++){
-        draw(c,objectArray[i])
+    for(let i = 0 ; i < entities.length ; i++){
+        draw(c,entities[i])
     }   
 }
 
 function animate(){
     c.clearRect(0,0,canvas.width,canvas.height)
+    if(newParticle !== null && floatingVector !== null){
+        draw(c,newParticle)
+        c.beginPath()
+        c.moveTo(newParticle.position.getX(),newParticle.position.getY())
+        c.lineTo(floatingVector.getX(),floatingVector.getY())
+        c.stroke()
+    }
     updateObjects()
     drawObjects()
     requestAnimationFrame(animate)

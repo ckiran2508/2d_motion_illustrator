@@ -4,8 +4,40 @@ var c = canvas.getContext('2d')
 
 function run(){
 
-var objectArray =[]
-var center
+var entities =[]
+var isMouseDown 
+var newParticle=null
+var floatingVector = Vector.create(0,0)
+
+canvas.addEventListener('mousedown',function(event){
+
+    isMouseDown=true
+    const rect = canvas.getBoundingClientRect()
+    var position =  Vector.create(event.clientX - rect.left.toFixed(0),event.clientY - rect.top.toFixed(0))
+    newParticle  = Particle.create(position.getX(),position.getY(),5,'lightgray',100)
+  })
+
+
+  canvas.addEventListener('mousemove',function(event){
+
+   if(isMouseDown){
+    const rect = canvas.getBoundingClientRect()
+    floatingVector = Vector.create(event.clientX - rect.left.toFixed(0),event.clientY - rect.top.toFixed(0))
+   }
+  })
+
+  canvas.addEventListener('mouseup',function(event){
+
+     isMouseDown = false
+     const rect = canvas.getBoundingClientRect()
+     var v = Vector.create(event.clientX - rect.left.toFixed(0),event.clientY - rect.top.toFixed(0))
+     newParticle.velocity = Vector.VectorDiff(v,newParticle.position)
+     newParticle.velocity.setMag(newParticle.velocity.getMag() / 10)
+     newParticle.charge = 1
+     entities.push(newParticle)
+     newParticle = null
+     floatingVector = null
+   })
 
 
 var magneticField = {
@@ -23,7 +55,7 @@ function init(){
       var object = Particle.create(50,20+ (i*20),5,'lightgray',1)
       object.charge = 1
       object.velocity = Vector.create(randomNumberRange(1,5), 0)
-      objectArray.push(object)
+      entities.push(object)
     }  
 }
 
@@ -45,25 +77,30 @@ function drawMagneticField(){
 
 
 function updateObjects(){
-    for(let i = 0 ; i < objectArray.length ; i++){
-        objectArray[i].motionInAMagneticField(magneticField)
-       // objectArray[i].handleBoundaries(canvas.width,canvas.height)
-        objectArray[i].updatePosition()
+    for(let i = 0 ; i < entities.length ; i++){
+        entities[i].motionInAMagneticField(magneticField)
+        entities[i].updatePosition()
     }
 }
 
 function drawObjects(){
-    for(let i = 0 ; i < objectArray.length ; i++){
-        draw(c,objectArray[i])
+    for(let i = 0 ; i < entities.length ; i++){
+        draw(c,entities[i])
     }   
 }
 
 function animate(){
     c.clearRect(0,0,canvas.width,canvas.height)
+    if(newParticle !== null && floatingVector !== null){
+        draw(c,newParticle)
+        c.beginPath()
+        c.moveTo(newParticle.position.getX(),newParticle.position.getY())
+        c.lineTo(floatingVector.getX(),floatingVector.getY())
+        c.stroke()
+    }
     updateObjects()
     drawMagneticField()
     drawObjects()
-   // c.drawImage(image,400,0,300,canvas.height)
     
     requestAnimationFrame(animate)
 }
