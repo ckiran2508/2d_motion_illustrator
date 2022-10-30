@@ -5,20 +5,72 @@ function run(){
 
 var swings = []
 var acceleration_due_to_gravity = Vector.create(0,0.2);
+var isMouseDown = false
+var line
+
+
+canvas.addEventListener('mousedown',function(event){
+
+    isMouseDown=true
+    const rect = canvas.getBoundingClientRect()
+    var v = Vector.create(event.clientX - rect.left.toFixed(0),event.clientY - rect.top.toFixed(0))
+
+    for(let i = 0 ; i < swings.length ; i++){
+        if(swings[i].weight.position.diffMag(v) < swings[i].weight.radius){
+            swings[i].latched = true
+            break
+        }
+    }
+  })
+  
+  
+  canvas.addEventListener('mousemove',function(event){
+        var latchedSwing
+        const rect = canvas.getBoundingClientRect();
+        if(isMouseDown){
+         for(let i = 0 ; i < swings.length; i++){
+            if(swings[i].latched !== undefined && swings[i].latched == true){
+                latchedSwing = swings[i]
+                break
+            }
+         }
+        if(latchedSwing !== undefined){
+              console.log(latchedSwing)
+               var mousePositionVector = Vector.create(event.clientX - rect.left.toFixed(0),event.clientY - rect.top.toFixed(0))
+               var tempPosition = Vector.VectorDiff(latchedSwing.hinge.position,mousePositionVector)
+               tempPosition.setMag(latchedSwing.hinge.position.diffMag(latchedSwing.weight.position))
+               latchedSwing.weight.position = Vector.VectorSum(latchedSwing.hinge.position,tempPosition)
+         }
+        }
+  })
+  
+  canvas.addEventListener('mouseup',function(event){
+    isMouseDown = false
+    for(let i = 0 ; i < swings.length; i++){
+        if(swings[i].latched !== undefined && swings[i].latched == true){
+            latchedSwing = swings[i]
+            latchedSwing.latched = false
+            break
+        }
+     }
+
+  })
+
 
 function init(){
 
     for(let i = 0; i < 10 ; i++){ 
       var swing = {
           weight : Particle.create(250 + (i*42), 300, 20,'lightgray',100),
-          hinge :  Particle.create(250 + (i*42), 150, 5, 'black')
+          hinge  :  Particle.create(250 + (i*42), 150, 5, 'black'),
+          latched: false
       }
       swing.weight.acceleration = Vector.create(0,-1)
       swings.push(swing) 
 }
-   var dirVec1 = Vector.VectorDiff(swings[0].hinge.position,swings[0].weight.position)
-   dirVec1.setDir(5*Math.PI/6)
-   swings[0].weight.position = Vector.VectorSum(swings[0].hinge.position,dirVec1)
+    var dirVec1 = Vector.VectorDiff(swings[0].hinge.position,swings[0].weight.position)
+    dirVec1.setDir(5*Math.PI/6)
+    swings[0].weight.position = Vector.VectorSum(swings[0].hinge.position,dirVec1)
 }
 
 function updateObjects(){
