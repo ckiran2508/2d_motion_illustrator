@@ -6,7 +6,7 @@ function run(){
 var entities =[]
 var isMouseDown 
 var newParticle=null
-var floatingVector = Vector.create(0,0)
+var floatingVector
 
 canvas.addEventListener('mousedown',function(event){
 
@@ -14,6 +14,7 @@ canvas.addEventListener('mousedown',function(event){
     const rect = canvas.getBoundingClientRect()
     var position =  Vector.create(event.clientX - rect.left.toFixed(0),event.clientY - rect.top.toFixed(0))
     newParticle  = Particle.create(position.getX(),position.getY(),30,'lightgray',100)
+    floatingVector = position
   })
 
 
